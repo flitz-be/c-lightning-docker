@@ -59,9 +59,9 @@ RUN wget -q https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz \
 && make install && cd .. && rm gmp-6.1.2.tar.xz && rm -rf gmp-6.1.2
 
 WORKDIR /opt/lightningd
-RUN wget -q https://github.com/ElementsProject/lightning/archive/refs/tags/$LIGHTNINGD_VERSION.tar.gz \
-&& tar xvf lightning-$LIGHTNINGD_VERSION.tar.xz \
-COPY lightning-$LIGHTNINGD_VERSION /tmp/lightning
+RUN wget -q https://github.com/ElementsProject/lightning/archive/refs/tags/${LIGHTNINGD_VERSION}.tar.gz \
+&& tar xvf lightning-${LIGHTNINGD_VERSION}.tar.xz \
+COPY lightning-${LIGHTNINGD_VERSION} /tmp/lightning
 RUN git clone --recursive /tmp/lightning . && \
     git checkout $(git --work-tree=/tmp/lightning --git-dir=/tmp/lightning/.git rev-parse HEAD)
 
