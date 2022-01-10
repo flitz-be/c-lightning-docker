@@ -22,6 +22,8 @@ jobs:
         path: 'lightning'
     - name: Copy code except Dockerfile
       run: rm lightning/Dockerfile && mv lightning/* .
+    - name: debug
+      run: ls
     - name: Docker build
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
