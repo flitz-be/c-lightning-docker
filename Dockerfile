@@ -18,6 +18,7 @@ RUN wget -qO /opt/tini "https://github.com/krallin/tini/releases/download/v0.18.
     && chmod +x /opt/tini
 
 ARG BITCOIN_VERSION=22.0
+ENV LIGHTNINGD_VERSION=v0.10.2
 ENV BITCOIN_TARBALL bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz
 ENV BITCOIN_URL https://bitcoincore.org/bin/bitcoin-core-$BITCOIN_VERSION/$BITCOIN_TARBALL
 ENV BITCOIN_ASC_URL https://bitcoincore.org/bin/bitcoin-core-$BITCOIN_VERSION/SHA256SUMS
@@ -33,7 +34,6 @@ RUN mkdir /opt/bitcoin && cd /opt/bitcoin \
 
 FROM debian:buster-slim as builder
 
-ENV LIGHTNINGD_VERSION=master
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates autoconf automake build-essential git libtool python3 python3-pip python3-setuptools python3-mako wget gnupg dirmngr git gettext libpq-dev postgresql
 
 RUN wget -q https://zlib.net/zlib-1.2.11.tar.gz \
@@ -59,7 +59,9 @@ RUN wget -q https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz \
 && make install && cd .. && rm gmp-6.1.2.tar.xz && rm -rf gmp-6.1.2
 
 WORKDIR /opt/lightningd
-COPY . /tmp/lightning
+RUN wget -q https://github.com/ElementsProject/lightning/archive/refs/tags/$LIGHTNINGD_VERSION.tar.gz \
+&& tar xvf lightning-$LIGHTNINGD_VERSION.tar.xz \
+COPY lightning-$LIGHTNINGD_VERSION /tmp/lightning
 RUN git clone --recursive /tmp/lightning . && \
     git checkout $(git --work-tree=/tmp/lightning --git-dir=/tmp/lightning/.git rev-parse HEAD)
 
