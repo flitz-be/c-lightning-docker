@@ -58,9 +58,10 @@ RUN wget -q https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz \
 && make install && cd .. && rm gmp-6.1.2.tar.xz && rm -rf gmp-6.1.2
 
 ENV LIGHTNINGD_VERSION=v0.10.2
+ENV LIGHTNING_URL https://github.com/ElementsProject/lightning/archive/refs/tags/$LIGHTNINGD_VERSION.tar.gz
 
 WORKDIR /opt/lightningd
-RUN wget -q https://github.com/ElementsProject/lightning/archive/refs/tags/${LIGHTNINGD_VERSION}.tar.gz \
+RUN wget -q "$LIGHTNING_URL" \
 && tar xvf lightning-${LIGHTNINGD_VERSION}.tar.xz \
 COPY lightning-${LIGHTNINGD_VERSION} /tmp/lightning
 RUN git clone --recursive /tmp/lightning . && \
