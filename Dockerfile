@@ -57,8 +57,8 @@ WORKDIR /opt
 # && make \
 # && make install && cd .. && rm gmp-6.1.2.tar.xz && rm -rf gmp-6.1.2
 
-ENV LIGHTNINGD_VERSION=v0.10.2
-ENV LIGHTNING_URL https://github.com/ElementsProject/lightning/archive/refs/tags/$LIGHTNINGD_VERSION.tar.gz
+ENV LIGHTNINGD_VERSION=0.10.2
+ENV LIGHTNING_URL https://github.com/ElementsProject/lightning/archive/refs/tags/v$LIGHTNINGD_VERSION.tar.gz
 
 WORKDIR /opt/lightningd
 RUN wget -q "$LIGHTNING_URL" \
