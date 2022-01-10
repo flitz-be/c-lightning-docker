@@ -10,6 +10,7 @@ jobs:
     env:
       REGISTRY: ghcr.io
       IMAGENAME: ${{ github.event.repository.name }}
+      LIGHTNINGD_VERSION: v0.10.2
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -17,6 +18,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         repository: 'ElementsProject/lightning'
+        ref: ${{ env.LIGHTNINGD_VERSION }}
         path: 'lightning'
     - name: Copy code except Dockerfile
       run: rm lightning/Dockerfile && mv lightning/* .
