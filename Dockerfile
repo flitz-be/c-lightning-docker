@@ -63,7 +63,8 @@ ENV LIGHTNING_TARBALL=lightning-$LIGHTNINGD_VERSION.tar.gz
 
 WORKDIR /opt/lightningd
 RUN wget -qO $LIGHTNING_TARBALL "$LIGHTNING_URL" \
-&& tar xzvf ${LIGHTNING_TARBALL} && mv lightning-$LIGHTNINGD_VERSION/* .
+&& tar xzvf ${LIGHTNING_TARBALL} && mv lightning-$LIGHTNINGD_VERSION lightning-v$LIGHTNINGD_VERSION
+WORKDIR /opt/lightningd/lightning-v$LIGHTNINGD_VERSION
 COPY . /tmp/lightning
 
 ARG DEVELOPER=0
