@@ -61,7 +61,7 @@ ENV LIGHTNINGD_VERSION=v0.10.2
 ENV LIGHTNING_URL https://github.com/ElementsProject/lightning
 
 WORKDIR /opt/lightningd
-RUN git clone --depth 1 --branch ${LIGHTNINGD_VERSION} ${LIGHTNING_URL} && rm lightning/Dockerfile && mv lightning/* .
+RUN git clone --branch ${LIGHTNINGD_VERSION} ${LIGHTNING_URL} && mv lightning/* .
 COPY . /tmp/lightning
 
 ARG DEVELOPER=0
