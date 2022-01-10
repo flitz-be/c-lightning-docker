@@ -18,7 +18,6 @@ RUN wget -qO /opt/tini "https://github.com/krallin/tini/releases/download/v0.18.
     && chmod +x /opt/tini
 
 ARG BITCOIN_VERSION=22.0
-ENV LIGHTNINGD_VERSION=v0.10.2
 ENV BITCOIN_TARBALL bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz
 ENV BITCOIN_URL https://bitcoincore.org/bin/bitcoin-core-$BITCOIN_VERSION/$BITCOIN_TARBALL
 ENV BITCOIN_ASC_URL https://bitcoincore.org/bin/bitcoin-core-$BITCOIN_VERSION/SHA256SUMS
@@ -57,6 +56,8 @@ RUN wget -q https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz \
 && ./configure --disable-assembly \
 && make \
 && make install && cd .. && rm gmp-6.1.2.tar.xz && rm -rf gmp-6.1.2
+
+ENV LIGHTNINGD_VERSION=v0.10.2
 
 WORKDIR /opt/lightningd
 RUN wget -q https://github.com/ElementsProject/lightning/archive/refs/tags/${LIGHTNINGD_VERSION}.tar.gz \
