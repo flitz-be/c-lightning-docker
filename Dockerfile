@@ -7,9 +7,9 @@
 # From the root of the repository, run "docker build -t yourimage:yourtag ."
 FROM debian:buster-slim as downloader
 
-# RUN set -ex \
-# 	&& apt-get update \
-# 	&& apt-get install -qq --no-install-recommends ca-certificates dirmngr wget
+RUN set -ex \
+	&& apt-get update \
+	&& apt-get install -qq --no-install-recommends ca-certificates dirmngr wget
 # 
 # WORKDIR /opt
 # 
