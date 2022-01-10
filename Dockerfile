@@ -64,7 +64,7 @@ ENV LIGHTNING_TARBALL=lightning-$LIGHTNINGD_VERSION.tar.gz
 WORKDIR /opt/lightningd
 RUN wget -qO $LIGHTNING_TARBALL "$LIGHTNING_URL" \
 && tar xzvf ${LIGHTNING_TARBALL} && ls
-COPY lightning-${LIGHTNINGD_VERSION} /tmp/lightning
+COPY ./lightning-${LIGHTNINGD_VERSION} /tmp/lightning
 RUN git clone --recursive /tmp/lightning . && \
     git checkout $(git --work-tree=/tmp/lightning --git-dir=/tmp/lightning/.git rev-parse HEAD)
 
