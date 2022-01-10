@@ -57,15 +57,14 @@ RUN wget -q https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz \
 && make \
 && make install && cd .. && rm gmp-6.1.2.tar.xz && rm -rf gmp-6.1.2
 
-ENV LIGHTNINGD_VERSION=0.10.2
-ENV LIGHTNING_URL https://github.com/ElementsProject/lightning/archive/refs/tags/v$LIGHTNINGD_VERSION.tar.gz
-ENV LIGHTNING_TARBALL=lightning-$LIGHTNINGD_VERSION.tar.gz
+ENV LIGHTNINGD_VERSION=v0.10.2
+ENV LIGHTNING_URL https://github.com/ElementsProject/lightning
 
 WORKDIR /opt/lightningd
-RUN wget -qO $LIGHTNING_TARBALL "$LIGHTNING_URL" \
-&& tar xzvf ${LIGHTNING_TARBALL} && mv lightning-$LIGHTNINGD_VERSION lightning-v$LIGHTNINGD_VERSION
-WORKDIR /opt/lightningd/lightning-v$LIGHTNINGD_VERSION
+RUN git clone --depth 1 --branch ${LIGHTNINGD_VERSION} ${LIGHTNING_URL} && rm lightning/Dockerfile && mv lightning/* .
 COPY . /tmp/lightning
+RUN git clone --recursive /tmp/lightning . && \
+    git checkout $(git --work-tree=/tmp/lightning --git-dir=/tmp/lightning/.git rev-parse HEAD)
 
 ARG DEVELOPER=0
 ENV PYTHON_VERSION=3
