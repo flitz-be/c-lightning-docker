@@ -68,7 +68,7 @@ RUN git clone --recursive /tmp/lightning . && \
 ARG DEVELOPER=0
 ENV PYTHON_VERSION=3
 RUN pip3 install mrkd mistune==0.8.4
-RUN ./configure --prefix=/tmp/lightning_install --enable-static && make -j3 DEVELOPER=${DEVELOPER} && make install
+RUN ls && ./configure --prefix=/tmp/lightning_install --enable-static && make -j3 DEVELOPER=${DEVELOPER} && make install
 
 FROM debian:buster-slim as final
 
