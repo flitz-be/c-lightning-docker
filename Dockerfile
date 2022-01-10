@@ -65,9 +65,6 @@ WORKDIR /opt/lightningd
 RUN wget -qO $LIGHTNING_TARBALL "$LIGHTNING_URL" \
 && tar xzvf ${LIGHTNING_TARBALL} && cd lightning-$LIGHTNINGD_VERSION
 COPY . /tmp/lightning
-RUN cd ..
-RUN git clone --recursive /tmp/lightning . && \
-    git checkout $(git --work-tree=/tmp/lightning --git-dir=/tmp/lightning/.git rev-parse HEAD)
 
 ARG DEVELOPER=0
 ENV PYTHON_VERSION=3
