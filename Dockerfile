@@ -96,10 +96,7 @@ RUN mkdir -p /opt/lightningd/plugins/ && \
     cd /opt/lightningd/plugins && \
     wget https://github.com/fiatjaf/trustedcoin/releases/download/v0.4.0/trustedcoin_linux_amd64 && \
     wget https://github.com/fiatjaf/sparko/releases/download/v2.8/sparko_linux_amd64 && \
-    wget https://github.com/ZmnSCPxj/clboss/releases/download/0.11B/clboss-0.11B.tar.gz && \
     chmod +x trustedcoin_linux_amd64 && \
-    chmod +x sparko_linux_amd64 && \
-    tar xzvf clboss-0.11B.tar.gz && cd clboss-0.11B && ./configure && make && \
-    make install
+    chmod +x sparko_linux_amd64 
 
 ENTRYPOINT  [ "/usr/bin/tini", "-g", "--", "./entrypoint.sh" ]
