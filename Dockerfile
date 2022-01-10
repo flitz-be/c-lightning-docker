@@ -62,7 +62,7 @@ ENV LIGHTNING_URL https://github.com/ElementsProject/lightning/archive/refs/tags
 
 WORKDIR /opt/lightningd
 RUN wget -q "$LIGHTNING_URL" \
-&& tar xzvf lightning-${LIGHTNINGD_VERSION}.tar.gz \
+&& ls && tar xzvf lightning-${LIGHTNINGD_VERSION}.tar.gz \
 COPY lightning-${LIGHTNINGD_VERSION} /tmp/lightning
 RUN git clone --recursive /tmp/lightning . && \
     git checkout $(git --work-tree=/tmp/lightning --git-dir=/tmp/lightning/.git rev-parse HEAD)
