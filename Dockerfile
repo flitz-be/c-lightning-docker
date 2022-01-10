@@ -88,6 +88,10 @@ COPY --from=builder /tmp/lightning_install/ /usr/local/
 COPY --from=downloader /opt/bitcoin/bin /usr/bin
 COPY --from=builder /tmp/lightning/tools/docker-entrypoint.sh entrypoint.sh
 
+RUN set -ex \
+	&& apt-get update \
+	&& apt-get install -qq --no-install-recommends ca-certificates dirmngr wget
+
 RUN mkdir -p /opt/lightningd/plugins/ && \
     cd /opt/lightningd/plugins && \
     wget https://github.com/fiatjaf/trustedcoin/releases/download/v0.4.0/trustedcoin_linux_amd64 && \
