@@ -15,15 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       name: Check out code
-    - uses: actions/checkout@v2
-      with:
-        repository: 'ElementsProject/lightning'
-        ref: ${{ env.LIGHTNINGD_VERSION }}
-        path: 'lightning'
-    - name: Copy code except Dockerfile
-      run: rm lightning/Dockerfile && mv lightning/* .
-    - name: debug
-      run: ls
     - name: Docker build
       uses: mr-smithers-excellent/docker-build-push@v5
       with:

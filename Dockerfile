@@ -61,7 +61,7 @@ ENV LIGHTNINGD_VERSION=v0.10.2
 ENV LIGHTNING_URL https://github.com/ElementsProject/lightning
 
 WORKDIR /opt/lightningd
-COPY . /tmp/lightning
+RUN git clone --branch $LIGHTNINGD_VERSION $LIGHTNING_URL /tmp/lightning
 RUN git clone --recursive /tmp/lightning . && \
     git checkout $(git --work-tree=/tmp/lightning --git-dir=/tmp/lightning/.git rev-parse HEAD)
 
