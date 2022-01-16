@@ -67,8 +67,10 @@ RUN git clone --recursive /tmp/lightning . && \
 
 ARG DEVELOPER=0
 ENV PYTHON_VERSION=3
+RUN apt-get install -y --no-install-recommends python3-dev
+RUN pip3 install -U pip && pip3 install -r requirements.lock
 RUN pip3 install mrkd mistune==0.8.4
-RUN ls && ./configure --prefix=/tmp/lightning_install --enable-static && make -j3 DEVELOPER=${DEVELOPER} && make install
+RUN ./configure --prefix=/tmp/lightning_install --enable-static && make -j3 DEVELOPER=${DEVELOPER} && make install
 
 FROM debian:buster-slim as final
 
@@ -100,5 +102,5 @@ RUN mkdir -p /opt/lightningd/plugins/ && \
     chmod +x trustedcoin_linux_amd64 && \
     chmod +x lightningd-redis-publisher && \
     chmod +x sparko_linux_amd64 
-
+EXPOSE 9735 9835
 ENTRYPOINT  [ "/usr/bin/tini", "-g", "--", "./entrypoint.sh" ]
