@@ -68,7 +68,7 @@ RUN git clone --recursive /tmp/lightning . && \
 ARG DEVELOPER=0
 ENV PYTHON_VERSION=3
 RUN apt-get install -y --no-install-recommends python3-dev
-RUN pip3 install -U pip && pip3 install -r requirements.lock
+RUN pip3 install -U pip
 RUN pip3 install mrkd mistune==0.8.4
 RUN ./configure --prefix=/tmp/lightning_install --enable-static && make -j3 DEVELOPER=${DEVELOPER} && make install
 
