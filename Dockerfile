@@ -98,9 +98,11 @@ RUN mkdir -p /opt/lightningd/plugins/ && \
     cd /opt/lightningd/plugins && \
     wget https://github.com/fiatjaf/trustedcoin/releases/download/v0.4.0/trustedcoin_linux_amd64 && \
     wget https://github.com/fiatjaf/sparko/releases/download/v2.8/sparko_linux_amd64 && \
+    wget https://github.com/fiatjaf/lightningd-webhook/releases/download/v3.3/webhook_linux_amd64 && \
     wget https://github.com/flitz-be/lightningd-redis-publisher/releases/download/v0.2/lightningd-redis-publisher && \
     chmod +x trustedcoin_linux_amd64 && \
     chmod +x lightningd-redis-publisher && \
+    chmod +x webhook_linux_amd64 && \
     chmod +x sparko_linux_amd64 
 EXPOSE 9735 9835
 ENTRYPOINT  [ "/usr/bin/tini", "-g", "--", "./entrypoint.sh" ]
