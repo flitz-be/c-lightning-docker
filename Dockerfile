@@ -57,7 +57,7 @@ RUN wget -q https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz \
 && make \
 && make install && cd .. && rm gmp-6.1.2.tar.xz && rm -rf gmp-6.1.2
 
-ENV LIGHTNINGD_VERSION=v0.10.2
+ENV LIGHTNINGD_VERSION=v0.10.1
 ENV LIGHTNING_URL https://github.com/ElementsProject/lightning
 
 WORKDIR /opt/lightningd
