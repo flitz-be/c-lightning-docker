@@ -67,7 +67,7 @@ RUN git clone --recursive /tmp/lightning . && \
 
 ARG DEVELOPER=0
 ENV PYTHON_VERSION=3
-RUN apt-get install -y --no-install-recommends python3-dev
+RUN apt-get install -y --no-install-recommends python3-dev python3-venv
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 - \
     && pip3 install -U pip \
     && pip3 install -U wheel \
