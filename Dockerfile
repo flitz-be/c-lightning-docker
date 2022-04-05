@@ -65,6 +65,10 @@ RUN git clone --branch $LIGHTNINGD_VERSION $LIGHTNING_URL /tmp/lightning
 RUN git clone --recursive /tmp/lightning . && \
     git checkout $(git --work-tree=/tmp/lightning --git-dir=/tmp/lightning/.git rev-parse HEAD)
 
+# Get Rust, we need moar languages
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
 ARG DEVELOPER=0
 ENV PYTHON_VERSION=3
 RUN apt-get install -y --no-install-recommends python3-dev python3-venv
