@@ -35,7 +35,7 @@ FROM debian:buster-slim as builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates autoconf automake build-essential git libtool python3 python3-pip python3-setuptools python3-mako wget gnupg dirmngr git gettext libpq-dev postgresql
 
-RUN wget -q https://zlib.net/zlib-1.2.11.tar.gz \
+RUN wget -q https://zlib.net/zlib-1.2.12.tar.gz \
 && tar xvf zlib-1.2.11.tar.gz \
 && cd zlib-1.2.11 \
 && ./configure \
