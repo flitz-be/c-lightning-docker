@@ -36,11 +36,11 @@ FROM debian:buster-slim as builder
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates autoconf automake build-essential git libtool python3 python3-pip python3-setuptools python3-mako wget gnupg dirmngr git gettext libpq-dev postgresql
 
 RUN wget -q https://zlib.net/zlib-1.2.12.tar.gz \
-&& tar xvf zlib-1.2.11.tar.gz \
-&& cd zlib-1.2.11 \
+&& tar xvf zlib-1.2.12.tar.gz \
+&& cd zlib-1.2.12 \
 && ./configure \
 && make \
-&& make install && cd .. && rm zlib-1.2.11.tar.gz && rm -rf zlib-1.2.11
+&& make install && cd .. && rm zlib-1.2.12.tar.gz && rm -rf zlib-1.2.12
 
 RUN apt-get install -y --no-install-recommends unzip tclsh \
 && wget -q https://www.sqlite.org/2019/sqlite-src-3290000.zip \
