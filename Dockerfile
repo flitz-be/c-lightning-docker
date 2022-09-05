@@ -1,7 +1,7 @@
 FROM elementsproject/lightningd:v0.12.0
 RUN set -ex \
 	&& apt-get update \
-	&& apt-get install -qq --no-install-recommends ca-certificates dirmngr wget libsecp256k1-dev libuv0.10
+	&& apt-get install -qq --no-install-recommends ca-certificates dirmngr wget libsecp256k1-dev libuv0.10-dev
 
 RUN mkdir -p /opt/lightningd/plugins/ && \
     cd /opt/lightningd/plugins && \
