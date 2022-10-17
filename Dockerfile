@@ -5,9 +5,10 @@ RUN set -ex \
 
 RUN mkdir -p /opt/lightningd/plugins/ && \
     cd /opt/lightningd/plugins && \
-    wget https://github.com/fiatjaf/trustedcoin/releases/download/v0.4.0/trustedcoin_linux_amd64 && \
+    wget https://github.com/nbd-wtf/trustedcoin/releases/download/v0.5.7/trustedcoin-linux-arm64.tar.gz && \
     wget https://github.com/fiatjaf/sparko/releases/download/v2.8/sparko_linux_amd64 && \
     wget https://github.com/fiatjaf/poncho/releases/download/v0.2.1/poncho_x64 && \
-    chmod +x trustedcoin_linux_amd64 && \
+    tar zxvf trustedcoin-linux-arm64.tar.gz && \
+    chmod +x trustedcoin && \
     chmod +x poncho_x64 && \
     chmod +x sparko_linux_amd64 
