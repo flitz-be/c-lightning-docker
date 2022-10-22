@@ -5,7 +5,7 @@ RUN set -ex \
 
 RUN mkdir -p /opt/lightningd/plugins/ && \
     cd /opt/lightningd/plugins && \
-    wget https://github.com/nbd-wtf/trustedcoin/releases/download/v0.6.0/trustedcoin-linux-amd64.tar.gz && \
+    wget https://github.com/nbd-wtf/trustedcoin/releases/download/v0.6.0/trustedcoin-v0.6.0-linux-amd64.tar.gz && \
     wget https://github.com/fiatjaf/sparko/releases/download/v2.8/sparko_linux_amd64 && \
     wget https://github.com/fiatjaf/poncho/releases/download/v0.2.1/poncho_x64 && \
     tar zxvf trustedcoin-linux-amd64.tar.gz && \
