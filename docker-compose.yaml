@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  cln:
+    image: ghcr.io/flitz-be/c-lightning-docker:v0.12.6
+    restart: always
+    command:
+      - "--mainnet"
+      - "--disable-plugin=bcli"
+      - "--plugin=/opt/lightningd/plugins/trustedcoin"
+      - "--addr=0.0.0.0:9735"
+      - "--experimental-offers"
+    volumes:
+      - data:/root/.lightning
+    ports:
+      - 9735:9735
+volumes:
+  data:
+    driver: local
