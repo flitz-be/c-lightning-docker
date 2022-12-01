@@ -1,4 +1,4 @@
-FROM elementsproject/lightningd:v0.12.1
+FROM elementsproject/lightningd:latest
 RUN set -ex \
 	&& apt-get update \
 	&& apt-get install -qq --no-install-recommends ca-certificates dirmngr wget libsecp256k1-dev libuv1-dev
